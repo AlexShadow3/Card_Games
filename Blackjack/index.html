@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="../images/blackjack.png" type="image/png">
+    <title>Blackjack</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="scrolling-title">Blackjack</h1>
+        </div>
+        
+        <div class="tableBoard" id="tableBoard">
+            <button class="playGame" id="playGame" onclick="launchGame()">Jouer</button>
+        </div>
+    
+        <div class="gamer">
+            <button class="hit" id="hit">Tirer</button>
+            <button class="double" id="double">Doubler</button>
+            <button class="stand" id="stand">Coucher</button>
+            <button class="split" id="split">Split</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="../cards.js"></script>
+</body>
+</html>
