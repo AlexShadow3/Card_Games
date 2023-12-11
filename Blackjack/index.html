@@ -14,18 +14,23 @@
         </div>
         
         <div class="tableBoard" id="tableBoard">
+            <div class="dealerBoard" id="dealerBoard">
+                <h1 class="dealerScore" id="dealerScore">Score du dealer: </h1>
+                <div class="dealerCards" id="dealerCards"></div>
+            </div>
             <button class="playGame" id="playGame" onclick="launchGame()">Jouer</button>
+            <div class="gamerCards" id="gamerCards"></div>
         </div>
     
-        <div class="gamer">
-            <button class="hit" id="hit">Tirer</button>
-            <button class="double" id="double">Doubler</button>
-            <button class="stand" id="stand">Coucher</button>
-            <button class="split" id="split">Split</button>
+        <div class="gamerBoard" id="gamerBoard">
+            <h1 class="playerScore" id="playerScore">Votre Score: </h1>
+            <button class="hitBtn" id="hitBtn" onclick="hit()">Tirer</button>
+            <button class="doubleBtn" id="doubleBtn" onclick="double()">Doubler</button>
+            <button class="standBtn" id="standBtn" onclick="stand()">Coucher</button>
+            <button class="splitBtn" id="splitBtn" onclick="split()">Split</button>
         </div>
     </div>
     
     <script src="script.js"></script>
-    <script src="../cards.js"></script>
 </body>
 </html>
