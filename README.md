@@ -1,6 +1,4 @@
-**Jeu en course de création**
-
-# Card_Games
+# Card Games
 
 Wanna play a card game ?
 
@@ -31,3 +29,7 @@ L'objectif du Blackjack est d'obtenir une main dont la valeur est la plus proche
 #### Blackjack :
 
 Si un joueur obtient un As et une carte de 10 points en tant que ses deux premières cartes, il a un "Blackjack". Cela est généralement payé à 3:2, sauf si le croupier a également un Blackjack, auquel cas c'est souvent un match nul.
+
+**Jeu en course de création**
+
+Link to the game : [Blackjack](https://alexshadow3.github.io/Card_Games/Blackjack/index.html)
