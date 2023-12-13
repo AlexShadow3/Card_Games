@@ -11,13 +11,24 @@
     <div class="container">
         <div class="header">
             <h1 class="scrolling-title">Blackjack</h1>
+            <!-- <div class="menu">
+                <button class="menuBtn" id="menuBtn" onclick="openMenu()">Menu</button>
+                <div class="menuContent" id="menuContent">
+                    <button class="menuBtn" id="menuBtn" onclick="openMenu()">Menu</button>
+                    <button class="menuBtn" id="menuBtn" onclick="openMenu()">Menu</button>
+                    <button class="menuBtn" id="menuBtn" onclick="openMenu()">Menu</button>
+                    <button class="menuBtn" id="menuBtn" onclick="openMenu()">Menu</button>
+                </div>
+            </div> -->
         </div>
+        <!-- <button class="log">Se connecter</button> -->
         
         <div class="tableBoard" id="tableBoard">
             <div class="dealerBoard" id="dealerBoard">
                 <h1 class="dealerScore" id="dealerScore">Score du dealer: </h1>
                 <div class="dealerCards" id="dealerCards"></div>
             </div>
+            <!-- <button class="resetGame" id="resetGame" onclick="resetGame()">Recommencer</button> -->
             <button class="playGame" id="playGame" onclick="launchGame()">Jouer</button>
             <div class="gamerCards" id="gamerCards"></div>
         </div>
@@ -32,5 +43,6 @@
     </div>
     
     <script src="script.js"></script>
+    <script src="firebase.js"></script>
 </body>
 </html>
