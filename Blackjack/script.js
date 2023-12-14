@@ -104,6 +104,7 @@ function launchGame() {
     setTimeout(() => {
         if (playerScore === 21) {
             console.log('Blackjack !');
+            isPlayerOver = false;
             dealerTurn();
         }
     }, 2000);
