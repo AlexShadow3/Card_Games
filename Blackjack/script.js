@@ -101,6 +101,13 @@ function launchGame() {
     
     let playerScore = checkScore(player);
 
+    setTimeout(() => {
+        if (playerScore === 21) {
+            console.log('Blackjack !');
+            dealerTurn();
+        }
+    }, 2000);
+
     playerScoreHTML.innerHTML = `Votre score: ${playerScore}`;
 
     // Initialisation du dealer
@@ -140,12 +147,6 @@ function launchGame() {
         dealerCardBackHTML.style.transform = 'rotateY(0) translateY(0)';
     }, 100);
 
-    setTimeout(() => {
-        if (playerScore === 21) {
-            console.log('Blackjack !');
-            dealerTurn();
-        }
-    }, 2000);
 }
 
 function hit() {
@@ -166,9 +167,7 @@ function hit() {
     if (playerScore > 21) {
         console.log('Le joueur a dépassé 21. Il a perdu !');
         isPlayerOver = true;
-        setTimeout(() => {
-            dealerTurn();
-        }, 1000);
+        dealerTurn();
     }
 }
 
@@ -207,6 +206,7 @@ function double() {
 
 function stand() {
     console.log("Le joueur a décidé de s'arrêter.");
+    isPlayerOver = false;
     dealerTurn();
 }
 
@@ -233,15 +233,14 @@ function dealerTurn() {
 
     let dealerScore = checkScore(dealer);
     dealerScoreHTML.innerHTML = `Score du dealer: ${dealerScore}`;
-
-    if (dealerScore >= 17) {
-        checkResults();
-    }
-    else if (isPlayerOver) {
-        console.log('Le joueur a dépassé 21. Le dealer retourne sa carte et gagne.');
+    
+    if (isPlayerOver === true) {
+        // console.log(isPlayerOver)
+        console.log('VOUS AVEZ PERDU.');
         resetGame.style.display = 'inline';
         resetGame.style.marginTop = '10px';
-        return;
+    } else if (dealerScore >= 17) {
+        checkResults();
     } else {
         const dealerInterval = setInterval(() => {
             whileDealerCards();
@@ -264,6 +263,10 @@ function checkResults() {
         resetGame.style.marginTop = '10px';
     } else if (checkScore(dealer) < checkScore(player)) {
         console.log('Le joueur a un meilleur score que le dealer. Le joueur a gagné !');
+        resetGame.style.display = 'inline';
+        resetGame.style.marginTop = '10px';
+    } else if (checkScore(dealer) === checkScore(player)) {
+        console.log('Le joueur et le dealer ont le même score. Egalité !');
         resetGame.style.display = 'inline';
         resetGame.style.marginTop = '10px';
     }
