@@ -166,7 +166,9 @@ function hit() {
     if (playerScore > 21) {
         console.log('Le joueur a dépassé 21. Il a perdu !');
         isPlayerOver = true;
-        dealerTurn();
+        setTimeout(() => {
+            dealerTurn();
+        }, 1000);
     }
 }
 
@@ -237,14 +239,15 @@ function dealerTurn() {
     }
     else if (isPlayerOver) {
         console.log('Le joueur a dépassé 21. Le dealer retourne sa carte et gagne.');
+        resetGame.style.display = 'inline';
+        resetGame.style.marginTop = '10px';
+        return;
     } else {
         const dealerInterval = setInterval(() => {
             whileDealerCards();
-            let canReset = false;
             if (checkScore(dealer) >= 17) {
                 clearInterval(dealerInterval);
                 checkResults();
-                canReset = true;
             }
         }, 2000);
     }
