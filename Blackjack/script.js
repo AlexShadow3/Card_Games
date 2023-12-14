@@ -5,7 +5,7 @@ let player = [];
 let dealer = [];
 let deck = [];
 
-let nbOfDeck = 1;
+let nbOfDeck = 4;
 
 let isPlayerOver = false;
 
@@ -45,19 +45,14 @@ function getCard() {
         console.error('Le deck est vide. Réinitialisez le jeu.');
         return null;
     }
-
     return deck.pop();
 }
 
 function checkScore(cards) {
     let score = 0;
-    // let hasAce = false;
-    // let numberOfAces = 0;
 
     for (let i = 0; i < cards.length; i++) {
         if (cards[i][0] === 'A' && score <= 10) {
-            // hasAce = true;
-            // numberOfAces++;
             score += 11;
         } else if (cards[i][0] === 'A' && score > 10) {
             score += 1; 
@@ -67,33 +62,26 @@ function checkScore(cards) {
             score += parseInt(cards[i][0]);
         }
     }
-
-    // Adjust Ace values if necessary
-    // while (hasAce && score > 21 && numberOfAces > 0) {
-    //     score -= 10;
-    //     numberOfAces--;
-    // }
-
     return score;
 }
 
 
 
 function launchGame() {
+    resetGame.style.display = 'none';
     playGame.style.display = 'none';
-    gamerBoard.style.display = 'block';
     gamerBoard.style.visibility = 'visible';
     gamerBoard.style.opacity = '1';
+    gamerBoard.style.display = 'block';
     dealerBoard.style.display = 'block';
     player = [];
     dealer = [];
-    deck = [];
 
     if (deck.length === 0) {
         initializeDeck();
         shuffleDeck();
+        console.log('Deck initialisé et mélangé !');
     }
-
 
     console.log('Taille du deck : ', deck.length)
 
@@ -101,30 +89,25 @@ function launchGame() {
 
     let playerCard1 = getCard();
     let playerCard2 = getCard();
-
     let dealerCard = getCard();
 
     // Initialisation du joueur
 
-    if (playerCard1[0] === playerCard2[0]) {
-        enableButton(splitBtn);
+    if (playerCard1[0] != playerCard2[0]) {
+        disableButton(splitBtn);
     }
 
     player.push(playerCard1, playerCard2);
-    console.log("Cartes du joueur", player);
     
     let playerScore = checkScore(player);
-    console.log('Score du joueur : ' + playerScore);
 
     playerScoreHTML.innerHTML = `Votre score: ${playerScore}`;
 
     // Initialisation du dealer
     
     dealer.push(dealerCard);
-    console.log("Cartes du dealer: ", dealer);
 
     let dealerScore = checkScore(dealer);
-    console.log('Score du dealer : ' + dealerScore);
 
     dealerScoreHTML.innerHTML = `Score du dealer: ${dealerScore}`;
 
@@ -150,12 +133,19 @@ function launchGame() {
     dealerCardBackHTML.classList.add('reverseCard');
     dealerCards.appendChild(dealerCardBackHTML);
 
-    if (playerScore === 21) {
-        console.log('Blackjack !');
-        dealerTurn();
-    }
+    setTimeout(() => {
+        playerCard1HTML.style.transform = 'rotateY(0) translateY(0)';
+        playerCard2HTML.style.transform = 'rotateY(0) translateY(0)';
+        dealerCardHTML.style.transform = 'rotateY(0) translateY(0)';
+        dealerCardBackHTML.style.transform = 'rotateY(0) translateY(0)';
+    }, 100);
 
-
+    setTimeout(() => {
+        if (playerScore === 21) {
+            console.log('Blackjack !');
+            dealerTurn();
+        }
+    }, 2000);
 }
 
 function hit() {
@@ -169,6 +159,10 @@ function hit() {
     playerCardHTML.classList.add('card');
     gamerCards.appendChild(playerCardHTML);
 
+    setTimeout(() => {
+        playerCardHTML.style.transform = 'rotateY(0) translateY(0)';
+    }, 100);
+
     if (playerScore > 21) {
         console.log('Le joueur a dépassé 21. Il a perdu !');
         isPlayerOver = true;
@@ -178,7 +172,6 @@ function hit() {
 
 function double() {
     console.log('Non disponible pour le moment.')
-    // doubleBtn.style.opacity = '0.5';
     // // console.log('Mise doublée !');
 
     // Ajouter ici la logique pour doubler la mise du joueur
@@ -197,6 +190,10 @@ function double() {
     // playerCardHTML.classList.add('card');
     // gamerCards.appendChild(playerCardHTML);
 
+    // setTimeout(() => {
+    //     playerCardHTML.style.transform = 'rotateY(0) translateY(0)';
+    // }, 100);
+
     // if (playerScore > 21) {
     //     console.log('Le joueur a dépassé 21. Il a perdu !');
     //     isPlayerOver = true;
@@ -211,48 +208,62 @@ function stand() {
     dealerTurn();
 }
 
+
 function dealerTurn() {
     disableButton(hitBtn);
     disableButton(doubleBtn);
     disableButton(standBtn);
     disableButton(splitBtn);
-    
     let dealerCard = getCard();
     dealer.push(dealerCard);
-    let dealerCardHTML = dealerCards.lastChild;
+
+    let dealerCardHTML = dealerCards.lastElementChild;
+    dealerCardHTML.remove();
+
+    dealerCardHTML = document.createElement('img');
     dealerCardHTML.src = `../images/cards/${dealerCard[1]}/${dealerCard[0]}${dealerCard[1]}.png`;
-    dealerCardHTML.classList.remove('reverseCard');
-    dealerCardHTML.classList.add('card');
-    console.log(`Carte tirée : ${dealerCard}`);
-    console.log(dealer);
+    dealerCardHTML.classList.add('reverseCard2');
+    dealerCards.appendChild(dealerCardHTML);
+
+    setTimeout(() => {
+        dealerCardHTML.style.transform = 'rotateY(0) translateY(0)';
+    }, 100);
+
     let dealerScore = checkScore(dealer);
     dealerScoreHTML.innerHTML = `Score du dealer: ${dealerScore}`;
 
-    if (isPlayerOver) {
+    if (dealerScore >= 17) {
+        checkResults();
+    }
+    else if (isPlayerOver) {
         console.log('Le joueur a dépassé 21. Le dealer retourne sa carte et gagne.');
     } else {
-        while (checkScore(dealer) < 17) {
-            setTimeout(whileDealerCards(), 2000);
-    //         let dealerCard = getCard();
-    //         dealer.push(dealerCard);
-    //         let dealerScore = checkScore(dealer);
-            
-    //         let dealerCardHTML = document.createElement('img');
-    //         dealerCardHTML.src = `../images/cards/${dealerCard[1]}/${dealerCard[0]}${dealerCard[1]}.png`;
-    //         dealerCardHTML.classList.add('card');
-    //         dealerCards.appendChild(dealerCardHTML);
-
-    //         dealerScoreHTML.innerHTML = `Score du dealer: ${dealerScore}`;
-        }
-        if (checkScore(dealer) > 21) {
-            console.log('Le dealer a dépassé 21. Le joueur a gagné !');
-        } else if (checkScore(dealer) > checkScore(player)) {
-            console.log('Le dealer a un meilleur score que le joueur. Le dealer a gagné !');
-        } else if (checkScore(dealer) < checkScore(player)) {
-            console.log('Le joueur a un meilleur score que le dealer. Le joueur a gagné !');
-        }
+        const dealerInterval = setInterval(() => {
+            whileDealerCards();
+            let canReset = false;
+            if (checkScore(dealer) >= 17) {
+                clearInterval(dealerInterval);
+                checkResults();
+                canReset = true;
+            }
+        }, 2000);
     }
-    // RESET THE GAME
+}
+
+function checkResults() {
+    if (checkScore(dealer) > 21) {
+        console.log('Le dealer a dépassé 21. Le joueur a gagné !');
+        resetGame.style.display = 'inline';
+        resetGame.style.marginTop = '10px';
+    } else if (checkScore(dealer) > checkScore(player)) {
+        console.log('Le dealer a un meilleur score que le joueur. Le dealer a gagné !');
+        resetGame.style.display = 'inline';
+        resetGame.style.marginTop = '10px';
+    } else if (checkScore(dealer) < checkScore(player)) {
+        console.log('Le joueur a un meilleur score que le dealer. Le joueur a gagné !');
+        resetGame.style.display = 'inline';
+        resetGame.style.marginTop = '10px';
+    }
 }
 
 function whileDealerCards() {
@@ -263,10 +274,14 @@ function whileDealerCards() {
     let dealerCardHTML = document.createElement('img');
     dealerCardHTML.src = `../images/cards/${dealerCard[1]}/${dealerCard[0]}${dealerCard[1]}.png`;
     dealerCardHTML.classList.add('card');
+    setTimeout(() => {
+        dealerCardHTML.style.transform = 'rotateY(0) translateY(0)';
+    }, 100);
     dealerCards.appendChild(dealerCardHTML);
     
     dealerScoreHTML.innerHTML = `Score du dealer: ${dealerScore}`;
 }
+
 
 function split() {
     console.log('Non disponible pour le moment.')
@@ -285,24 +300,12 @@ const enableButton = (button) => {
     button.style.opacity = '1';
 }
 
-// function resetGame() {
-//     enableButton(hitBtn);
-//     enableButton(doubleBtn);
-//     enableButton(standBtn);
-//     enableButton(splitBtn);
-//     hitBtn.style.opacity = '1';
-//     doubleBtn.style.opacity = '1';
-//     standBtn.style.opacity = '1';
-//     splitBtn.style.opacity = '1';
-//     gamerCards.innerHTML = '';
-//     dealerCards.innerHTML = '';
-//     gamerBoard.style.visibility = 'hidden';
-//     dealerBoard.style.display = 'none';
-//     playGame.style.display = '';
-//     playGame.style.opacity = '1';
-// }
-
-// function resetGame() {
-    // location.reload();
-    // launchGame();
-// }
+function eraseGame() {
+    enableButton(hitBtn);
+    enableButton(doubleBtn);
+    enableButton(standBtn);
+    enableButton(splitBtn);
+    gamerCards.innerHTML = '';
+    dealerCards.innerHTML = '';
+    launchGame();
+}
