@@ -55,7 +55,7 @@ body {
     width: 60px;
     transition: transform 1s;
     transform-style: preserve-3d;
-    transform: rotateY(360deg) translateY(-300%);
+    transform: rotateY(360deg);
     margin: 5px;
 }
 
@@ -147,10 +147,7 @@ body {
     text-align: left;
 }
 
-.gamerBoard .hitBtn,
-.gamerBoard .doubleBtn,
-.gamerBoard .standBtn,
-.gamerBoard .splitBtn {
+.gamerBoard .hitBtn {
     background-color: rgb(0, 41, 0);
     color: white;
     border: 3px solid white;
@@ -160,31 +157,13 @@ body {
     cursor: pointer;
 }
 
-.gamerBoard .hitBtn:hover,
-.gamerBoard .doubleBtn:hover,
-.gamerBoard .standBtn:hover,
-.gamerBoard .splitBtn:hover {
+.gamerBoard .hitBtn:hover {
     background-color: white;
     color: rgb(0, 41, 0);
     transition: all 0.5s ease;
 }
 
-.gamerCards {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70px;
-    height: 100px;
-    border: 3px solid white;
-    border-radius: 7px;
-    margin: 200px auto 0;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.secondHand {
+.playerCards {
     display: flex;
     justify-content: center;
     align-items: center;

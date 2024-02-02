@@ -11,17 +11,22 @@
     <div class="container">
         <div class="header">
             <h1 class="scrolling-title">Blackjack</h1>
-            <!-- <div class="menu">
+        </div>
+            <div class="menu">
                 <button class="menuBtn" id="menuBtn" onclick="openMenu()">Menu</button>
                 <div class="menuContent" id="menuContent">
                     <button class="menuBtn" id="menuBtn" onclick="openMenu()">Menu</button>
                     <button class="menuBtn" id="menuBtn" onclick="openMenu()">Menu</button>
                     <button class="menuBtn" id="menuBtn" onclick="openMenu()">Menu</button>
                     <button class="menuBtn" id="menuBtn" onclick="openMenu()">Menu</button>
+                    <form>
+                        <button class="signOut" type="button">Se déconnecter</button>
+                    </form>
                 </div>
-            </div> -->
-        </div>
-        <!-- <button class="log">Se connecter</button> -->
+                <h2 id="msg"></h2>
+                <h2 id="greet"></h2>
+            </div>
+        <button class="log" href="../firebase/login.html">Se connecter</button>
         
         <div class="tableBoard" id="tableBoard">
             <div class="dealerBoard" id="dealerBoard">
@@ -40,9 +45,10 @@
             <button class="standBtn" id="standBtn" onclick="stand()">Coucher</button>
             <button class="splitBtn" id="splitBtn" onclick="split()">Split</button>
         </div>
-    </div>
-    
+    </div>    
     <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore-compat.js"></script>
     <!-- <script src="firebase.js"></script> -->
 </body>
 </html>

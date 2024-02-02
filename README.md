@@ -1,6 +1,6 @@
 # Card Games
 
-Wanna play a card game ?
+Envie de jouer à un jeu de cartes ?
 
 ## Rules
 
@@ -30,6 +30,28 @@ L'objectif du Blackjack est d'obtenir une main dont la valeur est la plus proche
 
 Si un joueur obtient un As et une carte de 10 points en tant que ses deux premières cartes, il a un "Blackjack". Cela est généralement payé à 3:2, sauf si le croupier a également un Blackjack, auquel cas c'est souvent un match nul.
 
-**Jeu en course de création**
-
 Link to the game : [Blackjack](https://alexshadow3.github.io/Card_Games/Blackjack/index.html)
+**Jeu en cours de création**
+
+### Bataille
+
+#### Objectif :
+
+L'objectif de la Bataille est de gagner toutes les cartes du jeu.
+
+#### Valeurs des cartes :
+
+- Les cartes numérotées de 2 à 10 conservent leur valeur nominale.
+- Les figures (valet, dame, roi) valent, respectivement, 11, 12 et 13 points.
+- L'As vaut 14 points.
+- Pas de joker.
+
+#### Déroulement du jeu :
+
+1. Le jeu est divisé en deux piles égales, une pour le joueur et une pour le croupier.
+2. Chaque joueur retourne la première carte de sa pile.
+3. Le joueur ayant la carte la plus forte remporte les deux cartes et les place sous sa pile.
+4. En cas d'égalité, les joueurs retournent une deuxième carte face cachée puis une troisième carte, et le joueur ayant la carte la plus forte remporte toutes les cartes retournées.
+
+Link to the game : [Bataille](https://alexshadow3.github.io/Card_Games/Bataille/index.html)
+**Jeu en cours de création**
