@@ -1,0 +1,92 @@
+html {
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    font-family: sans-serif;
+    background-color: #f7ebeb;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0px 0px 10px #000;
+    background-color: rgba(0, 60, 0, 0.8);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #000;
+}
+
+#mainForm {
+    margin-top: 2%;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 2%;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: rgba(0, 60, 0, 0.8);
+    box-shadow: 0px 0px 10px #000;
+    text-align: center;
+    max-width: 600px;
+    display: inline-block;
+}
+
+.emailForm, .passwordForm {
+    margin-bottom: 5%;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px #000;
+    display: inline-block;
+    width: 45%;
+    box-sizing: border-box;
+}
+
+.pseudoForm {
+    margin-bottom: 5%;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px #000;
+    display: inline-block;
+    width: 55%;
+    box-sizing: border-box;
+}
+
+label {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    display: block;
+    margin-bottom: 10px;
+}
+
+input {
+    width: calc(100% - 20px);
+    box-sizing: border-box;
+    padding: 5%;
+    margin-top: 5%;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px #000;
+}
+
+.btnForm {
+    width: calc(100% - 20px);
+    box-sizing: border-box;
+    padding: 4%;
+    margin-top: 4%;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px #000;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+}
