@@ -1,27 +1,28 @@
 const valueOfCard = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 const typeOfCard = ['C', 'D', 'H', 'S'];
 
-let player = [];
-let dealer = [];
-let deck = [];
+let player = [],
+    dealer = [],
+    deck = [];
 
 let nbOfDeck = 4;
 
 let isPlayerOver = false;
 
 // let tableBoard = document.getElementById('tableBoard');
-let gamerBoard = document.getElementById('gamerBoard');
-let dealerBoard = document.getElementById('dealerBoard');
-let hitBtn = document.getElementById('hitBtn');
-let doubleBtn = document.getElementById('doubleBtn');
-let standBtn = document.getElementById('standBtn');
-let splitBtn = document.getElementById('splitBtn');
+let gamerBoard = document.getElementById('gamerBoard'),
+    dealerBoard = document.getElementById('dealerBoard'),
+    hitBtn = document.getElementById('hitBtn'),
+    doubleBtn = document.getElementById('doubleBtn'),
+    standBtn = document.getElementById('standBtn'),
+    splitBtn = document.getElementById('splitBtn'),
+    popUp = document.getElementById('popUp');
 
-let playerScoreHTML = document.getElementById('playerScore');
-let dealerScoreHTML = document.getElementById('dealerScore');
+let playerScoreHTML = document.getElementById('playerScore'),
+    dealerScoreHTML = document.getElementById('dealerScore');
 
-let gamerCards = document.getElementById('gamerCards');
-let dealerCards = document.getElementById('dealerCards');
+let gamerCards = document.getElementById('gamerCards'),
+    dealerCards = document.getElementById('dealerCards');
 
 function initializeDeck() {
     for (let deckCount = 0; deckCount < nbOfDeck; deckCount++) {    
@@ -66,7 +67,7 @@ function checkScore(cards) {
 }
 
 function launchGame() {
-    resetGame.style.display = 'none';
+    popUp.style.display = 'none';
     playGame.style.display = 'none';
     gamerBoard.style.visibility = 'visible';
     gamerBoard.style.opacity = '1';
@@ -145,7 +146,6 @@ function launchGame() {
         dealerCardHTML.style.transform = 'rotateY(0) translateY(0)';
         dealerCardBackHTML.style.transform = 'rotateY(0) translateY(0)';
     }, 100);
-
 }
 
 function hit() {
@@ -154,6 +154,7 @@ function hit() {
     let playerScore = checkScore(player);
     
     playerScoreHTML.innerHTML = `Votre score: ${playerScore}`;
+
     let playerCardHTML = document.createElement('img');
     playerCardHTML.src = `../images/cards/${playerCard[1]}/${playerCard[0]}${playerCard[1]}.png`;
     playerCardHTML.classList.add('card');
@@ -174,7 +175,7 @@ function double() {
     console.log('Non disponible pour le moment.')
     // // console.log('Mise doublée !');
 
-    // Ajouter ici la logique pour doubler la mise du joueur
+    //! Ajouter ici la logique pour doubler la mise du joueur
 
     // let playerCard = getCard();
     // player.push(playerCard);
@@ -233,11 +234,13 @@ function dealerTurn() {
     let dealerScore = checkScore(dealer);
     dealerScoreHTML.innerHTML = `Score du dealer: ${dealerScore}`;
     
-    if (isPlayerOver === true) {
-        // console.log(isPlayerOver)
+    if (isPlayerOver) {
         console.log('VOUS AVEZ PERDU.');
+        popUp.style.display = 'block';
         resetGame.style.display = 'inline';
         resetGame.style.marginTop = '10px';
+        const h2Element = popUp.querySelector("h2");
+        h2Element.textContent = "Vous avez perdu...";
     } else if (dealerScore >= 17) {
         checkResults();
     } else {
@@ -254,20 +257,32 @@ function dealerTurn() {
 function checkResults() {
     if (checkScore(dealer) > 21) {
         console.log('Le dealer a dépassé 21. Le joueur a gagné !');
+        popUp.style.display = 'block';
         resetGame.style.display = 'inline';
         resetGame.style.marginTop = '10px';
+        const h2Element = popUp.querySelector("h2");
+        h2Element.textContent = "Vous avez perdu...";
     } else if (checkScore(dealer) > checkScore(player)) {
         console.log('Le dealer a un meilleur score que le joueur. Le dealer a gagné !');
+        popUp.style.display = 'block';
         resetGame.style.display = 'inline';
         resetGame.style.marginTop = '10px';
+        const h2Element = popUp.querySelector("h2");
+        h2Element.textContent = "Vous avez perdu...";
     } else if (checkScore(dealer) < checkScore(player)) {
         console.log('Le joueur a un meilleur score que le dealer. Le joueur a gagné !');
+        popUp.style.display = 'block';
         resetGame.style.display = 'inline';
         resetGame.style.marginTop = '10px';
+        const h2Element = popUp.querySelector("h2");
+        h2Element.textContent = "Vous avez gagné !";
     } else if (checkScore(dealer) === checkScore(player)) {
         console.log('Le joueur et le dealer ont le même score. Egalité !');
+        popUp.style.display = 'block';
         resetGame.style.display = 'inline';
         resetGame.style.marginTop = '10px';
+        const h2Element = popUp.querySelector("h2");
+        h2Element.textContent = "Vous avez perdu...";
     }
 }
 
@@ -279,11 +294,12 @@ function whileDealerCards() {
     let dealerCardHTML = document.createElement('img');
     dealerCardHTML.src = `../images/cards/${dealerCard[1]}/${dealerCard[0]}${dealerCard[1]}.png`;
     dealerCardHTML.classList.add('card');
+
     setTimeout(() => {
         dealerCardHTML.style.transform = 'rotateY(0) translateY(0)';
     }, 100);
+
     dealerCards.appendChild(dealerCardHTML);
-    
     dealerScoreHTML.innerHTML = `Score du dealer: ${dealerScore}`;
 }
 
@@ -291,8 +307,7 @@ function whileDealerCards() {
 function split() {
     console.log('Non disponible pour le moment.')
     // console.log('Le joueur a décidé de splitter.');
-    // Ajoutez ici la logique pour gérer le split
-    
+    //! Ajoutez ici la logique pour gérer le split
 }
 
 const disableButton = (button) => {
@@ -314,35 +329,3 @@ function eraseGame() {
     dealerCards.innerHTML = '';
     launchGame();
 }
-
-// FIREBASE
-
-// let userCreds = JSON.parse(sessionStorage.getItem("user-creds"));
-// let userInfo = JSON.parse(sessionStorage.getItem("user-info"));
-
-// let msgHead = document.getElementById("msg");
-// let greetHead = document.getElementById("greet");
-// let signOutBtn = document.getElementById("signOut");
-
-// let signOut = () => {
-//     sessionStorage.removeItem("user-creds");
-//     sessionStorage.removeItem("user-info");
-//     window.location.href = "../firebase/login.html";
-// }
-
-// let checkCred = () => {
-//     if (!sessionStorage.getItem("user-creds")) {
-//         window.location.href = "../firebase/login.html";
-//     } else {
-//         msgHead.innerText = `User with email "${userCreds.email}" logged in`; 
-//         greetHead.innerText = `Hello ${userInfo.pseudo}`;
-//         // console.log(`user with email "${userCreds.email}" logged in`);
-//         // console.log(`Hello ${userInfo.pseudo}`);
-//     }
-// }
-
-// window.addEventListener("load", checkCred);
-// signOutBtn.addEventListener("click", signOut);
-
-// TOKENS
-
