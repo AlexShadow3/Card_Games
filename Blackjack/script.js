@@ -1,3 +1,7 @@
+// const supabase = require('../config/supabaseClient');
+
+// console.log(supabase);
+
 const valueOfCard = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 const typeOfCard = ['C', 'D', 'H', 'S'];
 
@@ -261,7 +265,7 @@ function checkResults() {
         resetGame.style.display = 'inline';
         resetGame.style.marginTop = '10px';
         const h2Element = popUp.querySelector("h2");
-        h2Element.textContent = "Vous avez perdu...";
+        h2Element.textContent = "Vous avez gagné...";
     } else if (checkScore(dealer) > checkScore(player)) {
         console.log('Le dealer a un meilleur score que le joueur. Le dealer a gagné !');
         popUp.style.display = 'block';
@@ -282,7 +286,7 @@ function checkResults() {
         resetGame.style.display = 'inline';
         resetGame.style.marginTop = '10px';
         const h2Element = popUp.querySelector("h2");
-        h2Element.textContent = "Vous avez perdu...";
+        h2Element.textContent = "Egalité !";
     }
 }
 
