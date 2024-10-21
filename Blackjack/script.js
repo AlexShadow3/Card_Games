@@ -102,7 +102,7 @@ function launchGame() {
 
     setTimeout(() => {
         if (playerScore === 21) {
-            console.log('Blackjack !');
+            // console.log('Blackjack !');
             isPlayerOver = false;
             dealerTurn();
         }
@@ -179,14 +179,14 @@ function hit() {
     }, 100);
 
     if (playerScore > 21) {
-        console.log('Le joueur a dépassé 21. Il a perdu !');
+        // console.log('Le joueur a dépassé 21. Il a perdu !');
         isPlayerOver = true;
         dealerTurn();
     }
 }
 
 function double() {
-    console.log('Non disponible pour le moment.')
+    // console.log('Non disponible pour le moment.')
     // // console.log('Mise doublée !');
 
     //TODO Ajouter ici la logique pour doubler la mise du joueur
@@ -219,7 +219,7 @@ function double() {
 }
 
 function stand() {
-    console.log("Le joueur a décidé de s'arrêter.");
+    // console.log("Le joueur a décidé de s'arrêter.");
     isPlayerOver = false;
     dealerTurn();
 }
@@ -307,7 +307,7 @@ function checkResults() {
 
 //! NOUVELLE FONCTION
 function printResults(log, txtContent) {
-    console.log(log);
+    // console.log(log);
     popUp.style.display = 'block';
     resetGame.style.display = 'inline';
     resetGame.style.marginTop = '10px';
@@ -336,7 +336,7 @@ function whileDealerCards() {
 
 
 function split() {
-    console.log('Non disponible pour le moment.')
+    // console.log('Non disponible pour le moment.')
     // console.log('Le joueur a décidé de splitter.');
     //TODO Ajoutez ici la logique pour gérer le split
 }
