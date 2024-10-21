@@ -188,35 +188,3 @@ function eraseGame() {
     dealerCards.innerHTML = '';
     launchGame();
 }
-
-// FIREBASE
-
-// let userCreds = JSON.parse(sessionStorage.getItem("user-creds"));
-// let userInfo = JSON.parse(sessionStorage.getItem("user-info"));
-
-// let msgHead = document.getElementById("msg");
-// let greetHead = document.getElementById("greet");
-// let signOutBtn = document.getElementById("signOut");
-
-// let signOut = () => {
-//     sessionStorage.removeItem("user-creds");
-//     sessionStorage.removeItem("user-info");
-//     window.location.href = "../firebase/login.html";
-// }
-
-// let checkCred = () => {
-//     if (!sessionStorage.getItem("user-creds")) {
-//         window.location.href = "../firebase/login.html";
-//     } else {
-//         msgHead.innerText = `User with email "${userCreds.email}" logged in`; 
-//         greetHead.innerText = `Hello ${userInfo.pseudo}`;
-//         // console.log(`user with email "${userCreds.email}" logged in`);
-//         // console.log(`Hello ${userInfo.pseudo}`);
-//     }
-// }
-
-// window.addEventListener("load", checkCred);
-// signOutBtn.addEventListener("click", signOut);
-
-// TOKENS
-
